@@ -6,9 +6,12 @@ const express = require('express');
 const ejs = require('ejs');
 const ejsLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
+const db = require('./config/mongoose');
 
 // firing express
 const app = express();
+
+app.use(express.urlencoded());
 
 
 app.use(sassMiddleware({
@@ -19,8 +22,8 @@ app.use(sassMiddleware({
     prefix:'/CSS'
 }))
 
-
-app.use('/', require('./routes/index'));
+// using express-ejs-layout as a middleware
+app.use(ejsLayouts);
 
 // using ejs as our view engine
 app.set('view engine', 'ejs');
@@ -28,6 +31,13 @@ app.set('views', './views');
 
 
 app.use(express.static('./assets'));
+
+
+app.use('/', require('./routes/index'));
+
+
+
+
 
 
 app.listen(port, function(err){
