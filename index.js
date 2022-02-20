@@ -7,6 +7,10 @@ const ejs = require('ejs');
 const ejsLayouts = require('express-ejs-layouts');
 const sassMiddleware = require('node-sass-middleware');
 const db = require('./config/mongoose');
+const passport = require('passport');
+const passportLocal = require('./config/passport_local_strategy');
+const session = require('express-session');
+const mongoStore = require('connect-mongo');
 
 // firing express
 const app = express();
@@ -31,6 +35,28 @@ app.set('views', './views');
 
 
 app.use(express.static('./assets'));
+
+app.use(session({
+    name:'befriends',
+    secret:'keshav',
+    saveUninitialized:false,
+    resave:false,
+    cookie:{
+        maxAge:1000*60*100
+    },
+    store: new mongoStore({
+        mongoUrl:'mongodb://localhost:27017/befriends_Development',
+        autoRemove:false
+    }, function(err){
+        if(err){console.log('Error in creating mongostore inside session cookie: ', err); return;}
+        console.log('mongoStore implemented Successfully!!!');
+    })
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use(passport.setAuthenticatedUser);
 
 
 app.use('/', require('./routes/index'));

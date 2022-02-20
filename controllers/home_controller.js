@@ -3,6 +3,7 @@ const User = require('../models/users');
 
 module.exports.home = async function(req, res){
     // return res.send('<h1>Home page</h1>');
+    if(!req.isAuthenticated()){return res.redirect('/user/signin');}
 
     let user = await User.find({});
 
@@ -15,15 +16,3 @@ module.exports.home = async function(req, res){
 };
 
 
-module.exports.create = async function(req, res){
-
-    let user = await User.create({
-        email:req.body.email,
-        password:req.body.password,
-        name:req.body.name,
-        age:req.body.age
-    });
-
-    return res.redirect('back');
-
-};
