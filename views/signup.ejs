@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="/CSS/signup.css">
+
+<div class="main_container box_center unsharp_edge">
+
+    <div class="d-flex mt-0">
+        <div class="signup half space text_center bold size focused pointer"> <a href="/user/signup" class="link d-block full">signUp</a> </div>
+        <div class="signin half space text_center bold size pointer "><a href="/user/signin" class="link d-block full">signIn</a></div>
+    </div>
+
+    <h1 class="text_center mt-5">SignUp </h1>
+
+    <form action="/user/create" class="mt-5 mb-5" method="post">
+
+        <div class="se-flex mt-2 bold size3">
+            <label for="email">Email: </label> <input type="email" name="email" id="email" placeholder="Enter your email here..." required>
+        </div>
+
+        <div class="se-flex mt-2 bold size3">
+            <label for="password">password: </label> <input type="password" name="password" id="password" placeholder="Enter your password here..." required>
+        </div>
+
+        <div class="se-flex mt-2 bold size3 ">
+            <label for="name" class="">Name: </label> <input type="text" name="name" id="name" placeholder="Enter your name here...">
+        </div>
+
+        <div class="se-flex mt-2 bold size3">
+            <label for="age">Age: </label> <input type="number" name="age" id="age" placeholder="Enter your age here...">
+        </div>
+
+        <div class="se-flex mt-5 mb-5 size3">
+            <input type="submit" class="bold button mb-5" value="submit">
+        </div>
+
+    </form>
+    
+
+</div>
