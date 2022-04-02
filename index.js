@@ -48,7 +48,7 @@ app.use(session({
         maxAge:1000*60*100
     },
     store: new mongoStore({
-        mongoUrl:'mongodb://localhost:27017/befriends_Development',
+        mongoUrl:process.env.MONGODB_URI || 'mongodb://localhost:27017/befriends_Development',
         autoRemove:false
     }, function(err){
         if(err){console.log('Error in creating mongostore inside session cookie: ', err); return;}
