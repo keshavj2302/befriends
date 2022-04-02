@@ -5,7 +5,7 @@ const User = require('../models/users');
 
 module.exports.signIn = function(req, res){
     if(req.isAuthenticated()){return res.redirect('/');}
-    return res.render('signin');
+    return res.render('signin', {layout : false});
 };
 
 module.exports.destroySession = async function(req, res){

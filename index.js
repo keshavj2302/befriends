@@ -33,6 +33,9 @@ app.use(ejsLayouts);
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.set('layout extractStyles', true);
+app.set('layout extractScripts', true);
+
 
 app.use(express.static('./assets'));
 
@@ -57,6 +60,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use(passport.setAuthenticatedUser);
+
+// app.set('layout signin', false);
 
 
 app.use('/', require('./routes/index'));

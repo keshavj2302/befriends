@@ -1,6 +1,6 @@
 module.exports.signUp = function(req, res){
     if(req.isAuthenticated()){return res.redirect('/');}
-    return res.render('signup');
+    return res.render('signup', {layout : false});
 };
 
 module.exports.create = async function(req, res){
