@@ -71,7 +71,7 @@ app.use('/', require('./routes/index'));
 
 
 
-app.listen(process.env.port || port, function(err){
+app.listen(process.env.PORT || port, function(err){
     if(err){console.log('Error in listening the server: ', err); return;}
     console.log('server is running on port: ', port);
 });
