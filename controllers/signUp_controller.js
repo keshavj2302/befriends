@@ -1,3 +1,5 @@
+let User = require('../models/users');
+
 module.exports.signUp = function(req, res){
     if(req.isAuthenticated()){return res.redirect('/');}
     return res.render('signup', {layout : false});

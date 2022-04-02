@@ -20,7 +20,7 @@ module.exports.destroySession = async function(req, res){
 module.exports.createSession = async function(req, res){
     try {
         console.log("req.user : ", req.user);
-        console.log('req.isAuthenticated() : ', req.isAuthenticated());
+        // console.log('req.isAuthenticated() : ', req.isAuthenticated());
         let user = await User.findOne({email:req.body.email});
         if(!user || user.password != req.body.password){
             console.log('Invalid username or password!!!');
