@@ -7,6 +7,7 @@ router.get('/', homeController.home);
 
 router.use('/user', require('./user'));
 
+router.use('/profile', require('./profile'));
 
 
 

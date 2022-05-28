@@ -15,22 +15,30 @@ textarea:focus, input:focus{outline: none;}
 .link{color: black;text-decoration: none;}
 .border{border: 2px solid black !important;}
 .text_white{color: white;}
+#head_part{position: fixed;top: 0;left: 0;width: 100%;}
+.blue{color: blue;}
+// .btn-gradient{background-image: linear-gradient(to bottom right, red, yellow);}
 
 header{
     background-image: linear-gradient(rgb(0, 255, 221), rgb(0, 255, 242));
+    width: 100%;
+    margin: 0px;
+    padding: 14px;
 
     // .search{
     //     i{width: 10%;}
     //     input{width: 80%;}
     // }
+
+    
 }
 
 @media screen and (max-width : 350px) {
-    .headlink{width: 80%;}
+    .headlink{width: 60%;}
 }
 
 @media screen and (max-width : 576px) {
-    .search{display: none;}
+    .search{display: none; *, i{display: none !important;}}
 }
 
 @media screen and (min-width : 576px) {

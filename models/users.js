@@ -1,4 +1,7 @@
 const mongoose = require('mongoose');
+const path = require('path');
+const multer = require('multer');
+const AVATAR_PATH = path.join('/uploads/users/avatars');
 
 const userSchema = new mongoose.Schema({
     email:{
@@ -15,11 +18,36 @@ const userSchema = new mongoose.Schema({
     },
     age:{
         type:String
-    }
+    },
+    avatar:{
+        type:String
+    },
+    backAvatar:{
+        type:String
+    },
+    allPosts :[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'posts'
+    }]
 }, {
     timestamps:true
 });
 
-const user = mongoose.model('users', userSchema);
 
+let storage = multer.diskStorage({
+    destination: function(req, file, cb){
+        cb(null, path.join(__dirname, '..', AVATAR_PATH));
+    },
+    filename: function(req, file, cb){
+        cb(null, file.fieldname + '-' + Date.now());
+    }
+});
+
+
+
+userSchema.statics.uploadAvatar = multer({storage:storage}).single('avatar');
+userSchema.statics.avatarPath = AVATAR_PATH;
+
+
+const user = mongoose.model('users', userSchema);
 module.exports = user;

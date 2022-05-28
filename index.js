@@ -5,10 +5,11 @@ const path = require('path');
 const express = require('express');
 const ejs = require('ejs');
 const ejsLayouts = require('express-ejs-layouts');
-// const sassMiddleware = require('node-sass-middleware');
+const sassMiddleware = require('node-sass-middleware');
 const db = require('./config/mongoose');
 const passport = require('passport');
 const passportLocal = require('./config/passport_local_strategy');
+const passportGoogle = require('./config/passport_google_strategy');
 const session = require('express-session');
 const mongoStore = require('connect-mongo');
 
@@ -18,13 +19,13 @@ const app = express();
 app.use(express.urlencoded());
 
 
-// app.use(sassMiddleware({
-//     src:'./assets/SCSS',
-//     dest:'./assets/CSS',
-//     debug:true,
-//     outputStyle:'extended',
-//     prefix:'/CSS'
-// }))
+app.use(sassMiddleware({
+    src:'./assets/SCSS',
+    dest:'./assets/CSS',
+    debug:true,
+    outputStyle:'extended',
+    prefix:'/CSS'
+}))
 
 // using express-ejs-layout as a middleware
 app.use(ejsLayouts);
@@ -38,6 +39,8 @@ app.set('layout extractScripts', true);
 
 
 app.use(express.static('./assets'));
+
+app.use('/uploads', express.static(__dirname + '/uploads'));
 
 app.use(session({
     name:'befriends',

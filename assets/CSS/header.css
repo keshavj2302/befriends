@@ -56,16 +56,30 @@ textarea:focus, input:focus {
 .text_white {
   color: white; }
 
+#head_part {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; }
+
+.blue {
+  color: blue; }
+
 header {
-  background-image: linear-gradient(#00ffdd, #00fff2); }
+  background-image: linear-gradient(#00ffdd, #00fff2);
+  width: 100%;
+  margin: 0px;
+  padding: 14px; }
 
 @media screen and (max-width: 350px) {
   .headlink {
-    width: 80%; } }
+    width: 60%; } }
 
 @media screen and (max-width: 576px) {
   .search {
-    display: none; } }
+    display: none; }
+    .search *, .search i {
+      display: none !important; } }
 
 @media screen and (min-width: 576px) {
   .search {
