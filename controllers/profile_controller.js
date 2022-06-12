@@ -3,10 +3,11 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports.profile = async function(req, res){
-    console.log('Here : ' + req.params.id);
+    // console.log('Here : ' + req.params.id);
 
     try {
         if(req.isAuthenticated()){
+            let isAdmin = false;
 
             let currUser = await User.findById(req.params.id)
                                 .populate('allPosts')
@@ -15,12 +16,18 @@ module.exports.profile = async function(req, res){
                                     populate:{
                                         path:'user'
                                     }
-                                })
-            ;
+                                });
+            
+            if((currUser._id).equals(req.user._id)){ isAdmin = true;}
+
+            console.log(currUser._id + " :  " +  req.user._id);
+
+            console.log('isAdmin : ' + isAdmin);
 
             return res.render('profile',{
                 currUser:currUser,
-                allPosts:currUser.allPosts
+                allPosts:currUser.allPosts,
+                isAdmin:isAdmin
             });
         }
         
@@ -44,6 +51,9 @@ module.exports.updateProfile = async function(req, res){
                 let user = await User.findById(req.user._id);
                 user.name = req.body.name;
                 user.email = req.body.email;
+                user.about = req.body.about;
+                user.gender = req.body.gender;
+                user.institute = req.body.institute;
 
                 console.log('req.file : ' + req.file);
                 // console.log('Avatar_path : ' + User.avatarPath);

@@ -9,7 +9,7 @@ module.exports.home = async function(req, res){
 
     let user = await User.find({});
 
-    console.log(user);
+    // console.log(user);
 
     return res.render('home', {
         title:'befriends',

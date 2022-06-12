@@ -11,7 +11,7 @@
 
     
 
-    <section id="posts" class="border1">
+    <section id="posts" class="">
 
         <h1 class="my-5 text-center">All Posts <i class="fas fa-blog"></i></h1>
 
@@ -76,8 +76,8 @@
                         </div>
 
                         <div class="post_footer my-1 d-flex">
-                            <div class="likes bold half text_center"> <i class="far fa-thumbs-up"></i> Likes</div>
-                            <div class="comments bold half text_center">comments</div>
+                            <div class="likes bold half text_center"><a href="/user/likes/<%= each_post._id %>" class="link text_white"><%= each_post.likes.length %> &nbsp;<i class="far fa-thumbs-up"></i> Likes</a> </div>
+                            <div class="comments bold half text_center"><a href="/user/comment/<%= each_post._id %>" class="link text_white">comments</a> (<%= each_post.comments.length %>) </div>
                         </div>
 
                         
@@ -95,7 +95,7 @@
 
     </section>
 
-    <section id="user_and_friends" class="border1" >
+    <section id="user_and_friends" class="" >
         <h1 class="text_center my-5">All Users <i class="fas fa-users"></i></h1>
 
         <div class="all_user" id="all_user">
@@ -106,16 +106,22 @@
                     <div class="each_user_info se-flex ">
 
                         <div >
-                            <% if( eachUser.avatar) { %> 
-                                <img class="img_iconMD" src="\uploads\users\avatars/avatar-1653232835974" alt="user_DP">
-                            <% }else{ %>
-                                <img class="img_iconMD" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user_DP">
-                            <% } %>
+
+                            <a href="/profile/<%= eachUser._id %>" class="d-block">
+                                <% if( eachUser.avatar) { %> 
+                                    <img class="img_iconMD" src="\uploads\users\avatars/avatar-1653232835974" alt="user_DP">
+                                <% }else{ %>
+                                    <img class="img_iconMD" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="user_DP">
+                                <% } %>
+                            </a>
+                            
                         </div>
                         
                         
         
-                        <p class="bold"><%= eachUser.name %></p>
+                        <a href="/profile/<%= eachUser._id %>" class="d-block link white"><p class="bold white d-block"><%= eachUser.name %></p></a>
+
+                        <!-- <p class="bold border1"><%= eachUser.name %></p> -->
                     </div>
                     <button type="button" class="btn bold btn-gradient">follow</button>
                 </div>

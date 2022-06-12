@@ -89,6 +89,9 @@ textarea:focus, input:focus {
 .margin70 {
   margin-top: 70px; }
 
+.width70 {
+  width: 70%; }
+
 #background_dp {
   margin-top: 54px;
   height: 400px; }
@@ -104,21 +107,21 @@ textarea:focus, input:focus {
     height: 100%;
     width: 100%; }
 
-.each_post .user_info, .each_post .follow_delete {
-  width: 40%; }
-
-.each_post .post_body {
-  display: flex;
-  flex-wrap: wrap; }
-  .each_post .post_body .post_img_div {
-    height: 300px;
-    width: 100%; }
-  .each_post .post_body .post_body_image {
-    height: 100%;
-    width: 100%; }
+.each_post {
+  background-color: #000000e0; }
+  .each_post .user_info, .each_post .follow_delete {
+    width: 40%; }
+  .each_post .post_body {
+    display: flex;
+    flex-wrap: wrap; }
+    .each_post .post_body .post_img_div {
+      height: 300px;
+      width: 100%; }
+    .each_post .post_body .post_body_image {
+      height: 100%;
+      width: 100%; }
 
 body {
-  background-color: #000000e0;
   color: white; }
   body #post_form .file_upload {
     width: 100px; }

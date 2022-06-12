@@ -1,6 +1,7 @@
 const Post = require('../models/posts');
 const User = require('../models/users');
 const fs = require('fs');
+const path = require('path');
 
 module.exports.create = async function(req, res){
     try {
@@ -30,10 +31,7 @@ module.exports.create = async function(req, res){
             
 
         });
-        
-
-        
-
+        req.flash('success', 'Post published');
         return res.redirect('back');
         
     } catch (err) {
@@ -49,11 +47,19 @@ module.exports.destroy = async function(req, res){
         let post = await Post.findById(req.params.id);
         post.remove();
 
+        if(fs.existsSync(path.join(__dirname, '..', post.avatar))){
+            fs.unlinkSync(path.join(__dirname, '..', post.avatar));
+            console.log('File deleted!!');
+        }
+
+        console.log('path : ' + (path.join(__dirname, '..', post.avatar)));
+
         let user = await User.findById(req.user._id);
         let ind = (user.allPosts).findIndex(function(each_id){ return each_id == req.user._id;});
         (user.allPosts).splice(ind, 1);
         user.save();
         console.log('Post deleted Successfully');
+        req.flash('error', 'Post Deleted');
         return res.redirect('back');
         
     } catch (err) {

@@ -23,20 +23,42 @@
 
 <h1 class=" text_center margin70">Profile Page</h1>
 
-    <% if((currUser._id).equals(user._id)){ %>
+    <% if(isAdmin){ %>
+        <p class="text_center mt-5"><%= currUser.name %></p>
+        <p class="text_center"><%= currUser.email %></p>
+
+        <% if(currUser.gender) { %><p class="text_center"> <%= currUser.gender %></p><% }%>
+        
+        <% if(currUser.institute) { %><p class="text_center bold"> <%= currUser.institute %></p><% }%>
+        
+        <% if(currUser.about) { %><p class="text_center"> <%= currUser.about %></p><% }%>
+        
+        
         <h2 class="text_center my-5">update profile <i class="fas fa-edit"></i></h2>
-        <form action="/profile/update" enctype="multipart/form-data" class="my-5 border1 spaceXL" method="post">
+        <form action="/profile/update" enctype="multipart/form-data" class="my-5 spaceXL" method="post">
             <div class="se-flex">
                 <input type="text" name="name" class="my-3 " value="<%= currUser.name %>" >
             </div>
             
 
             <div class="se-flex my-2">
-                <input type="text" name="email"  value="<%= currUser.email %>">
+                <input type="text" name="email" class="space" value="<%= currUser.email %>">
+            </div>
+
+            <div class="se-flex my-2">
+                <textarea name="about" id="about" class="space" cols="30" rows="3" placeholder="Tell us about you..."></textarea>
+            </div>
+
+            <div class="se-flex my-2">
+                <input type="text" name="gender" class="space" placeholder="Write your Gender here">
+            </div>
+
+            <div class="se-flex my-2">
+                <input type="text" name="institute" class="space" placeholder="Company or institute">
             </div>
             
 
-            <div class="se-flex">
+            <div class="se-flex my-2">
                 <input type="file" class="file_upload my-3" name="avatar">
             </div>
 
@@ -49,8 +71,8 @@
         </form>
     <% }else{ %>
 
-        Here <%= currUser._id %> <br>
-        Here1, <%= user._id %>
+        <h3 class="text_center my-5"><%= currUser.name %> </h3> <br>
+        <p class="text_center "><%= currUser.email %> </p>
 
     <% } %>
 
@@ -77,10 +99,15 @@
                         </div>
 
                         <div class=" se-flex follow_delete">
+                            <% if(isAdmin) { %>
+                                <button class=" round bold btn-info"><a href="/profile/update/back-profile/?image=<%= each_post.avatar %>" class="link">set cover</a></button>
+                                <a href="/user/delete-post/<%= each_post._id %>" class="link"><i class="fas fa-minus-circle fa-2x delete"></i></a>
 
-                            <button class=" round bold btn-info"><a href="/profile/update/back-profile/?image=<%= each_post.avatar %>" class="link">set cover</a></button>
-                        <a href="/user/delete-post/<%= each_post._id %>" class="link"><i class="fas fa-minus-circle fa-2x delete"></i></a>
+                            <% }else { %>
+                                <button class=" round bold btn-info"><a href="/profile/update/back-profile/?image=<%= each_post.avatar %>" class="link">follow</a></button>
+                            <% } %>
 
+                        
 
                         </div>
                         
@@ -97,8 +124,8 @@
                     </div>
 
                     <div class="post_footer my-1 d-flex">
-                        <div class="likes bold half text_center"> <i class="far fa-thumbs-up"></i> Likes</div>
-                        <div class="comments bold half text_center">comments</div>
+                        <div class="likes bold half text_center"><a href="/user/likes/<%= each_post._id %>" class="link text_white"><%= each_post.likes.length %> &nbsp;<i class="far fa-thumbs-up"></i> Likes</a></div>
+                        <div class="comments bold half text_center"><a href="/user/comment/<%= each_post._id %>" class="link text_white">comments</a> (<%= each_post.comments.length %>) </div>
                     </div>
 
                     

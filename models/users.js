@@ -19,6 +19,18 @@ const userSchema = new mongoose.Schema({
     age:{
         type:String
     },
+    institute:{
+        type:String
+    },
+    about:{
+        type:String,
+    },
+    gender:{
+        type:String
+    },
+    relationshipStatus:{
+        type:String
+    },
     avatar:{
         type:String
     },

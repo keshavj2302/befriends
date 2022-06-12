@@ -14,7 +14,15 @@ const postSchema = new mongoose.Schema({
     }, 
     avatar:{
         type:String
-    }
+    },
+    comments:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'comments'
+    }],
+    likes:[{
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'likes'
+    }]
 }, {
     timestamps:true
 });

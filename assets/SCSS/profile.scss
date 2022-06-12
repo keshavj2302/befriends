@@ -25,6 +25,7 @@ textarea:focus, input:focus{outline: none;}
 .post_border{border: 5px solid rgba(255, 34, 0, 0.918);border-radius: 7px;}
 .file_upload{width: 100px;}
 .margin70{margin-top: 70px;}
+.width70{width: 70%;}
 
 
 #background_dp{
@@ -48,6 +49,7 @@ textarea:focus, input:focus{outline: none;}
     // border: 2px solid yellow;
     // margin: auto;
     // height: 400px;
+    background-color: #000000e0;
     .user_info, .follow_delete{
         width: 40%;
     }
@@ -71,7 +73,7 @@ textarea:focus, input:focus{outline: none;}
 
 
 body{
-    background-color: #000000e0;
+    // background-color: #000000e0;
     color: white;
 
   
