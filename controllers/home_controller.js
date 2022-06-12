@@ -3,7 +3,7 @@ const User = require('../models/users');
 
 module.exports.home = async function(req, res){
     // return res.send('<h1>Home page</h1>');
-    if(!req.isAuthenticated()){return res.redirect('/user/signin');}
+    if(!req.isAuthenticated()){return res.redirect('/user/signup');}
 
     let posts = await Post.find({}).populate('user');
 
