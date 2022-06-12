@@ -37,7 +37,7 @@ module.exports.sentOtp = async (req, res) => {
     try {
 
         let user = await User.findOne({email: req.body.email});
-        if(!user){req.flash('error', 'register this user first');return res.redirect('/user/signin');}
+        if(!user){req.flash('error', 'you are not a registered user');return res.redirect('/user/signup');}
         otp = generateOTP();
         otpMailer.sent_OTP(user, otp);
         console.log('OTP : ' + otp);
