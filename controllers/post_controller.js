@@ -7,6 +7,7 @@ module.exports.create = async function(req, res){
     try {
 
         Post.uploadedAvatar(req, res, async function(){
+            console.log('Here');
 
             let post = await Post.create({
                 content: req.body.content,
